@@ -1,0 +1,1292 @@
+//1.Form Validation
+//regform.html
+
+<html >
+   <head>
+       <script type="text/javascript" src="validation.js" ></script>
+   </head>
+
+    <body>
+       <center>
+         <h1>Registration Form</h1>
+         <form name="form1"  action="" method="post">
+          <table border='0'>
+            <tr><td><LABEL for="name">Name</LABEL></td>
+                <td><INPUT type="text" id="name"></td>
+           </tr>
+            <tr><td><LABEL for="username">Username</LABEL></td>
+                <td><INPUT type="text" id="username"></td>
+           </tr>
+            <tr><td><LABEL for="password">Password</LABEL></td>
+                <td><INPUT type="password" id="password"></td>
+           </tr>
+            <tr><td><LABEL for="gender">Gender</LABEL></td>
+                <td><INPUT type="radio" name="gender" value="Male"> Male
+                    <INPUT type="radio" name="gender" value="Female"> Female </td>
+           </tr>
+           <tr><td><LABEL for="contctno">Contact Number</LABEL></td>
+               <td><INPUT type="text" id="contctno"></td>
+          </tr>
+           <tr><td><LABEL for="email">Email</LABEL></td>
+               <td><INPUT type="text" id="email"></td>
+           </tr>
+           <tr><td></td>
+           <td><br/><INPUT type="submit" value="Submit" onClick="return validateForm()">
+                    <INPUT type="reset" onClick="return confirmreset()"></td>
+           </tr>
+        </table>
+       </FORM>
+      </center>
+   </body>
+</html>
+
+//Validation.js
+
+function validateForm()
+{
+   var namepattern=/^[a-zA-Z]+$/
+   var usernamepattern=/^[a-zA-Z0-9]+$/
+   var passpattern=/^(?=.*[a-z])+(?=.*[A-Z])+(?=.*[0-9])+(?=.*[!@#$%^&*()])+[a-zA-Z0-9!@#$%^&*()]*$/
+   var phonepattern = /^\d{10}$/
+   var emailpattern =/^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.([a-zA-Z]{2,4})$/
+ 
+
+   var x=document.form1.name;
+   if (x.value=="")
+   {
+      alert("Please enter the Name.");
+      x.focus();
+      return false;
+   }
+ 
+   else if ((!namepattern.test(x.value)))
+   {
+      alert("Name should contain only alphabets.");
+      x.value="";
+      x.focus();
+      return false;
+   }
+   var x=document.form1.username;
+   if (x.value=="")
+   {
+     alert("Please enter the Username.");
+     x.focus();
+     return false;
+   }
+ 
+   else if ((!usernamepattern.test(x.value)))
+   {
+      alert("Username should contain only alphanumeric characters.");
+      x.value="";
+      x.focus();
+      return false;
+   }
+   var x=document.form1.password;
+   if (x.value=="")
+   {
+      alert("Please enter the password.");
+      x.focus();
+      return false;
+   }
+ 
+   else if ((!passpattern.test(x.value)))
+   {
+       alert("Password should contain at least one digit,upper and lower character and a special character.");
+       x.value="";
+       x.focus();
+       return false;
+   }
+
+ 
+
+   if((document.form1.gender[0].checked==false)&&(document.form1.gender[1].checked==false))
+   {
+       document.form1.gender[0].focus();
+       alert("Please select a gender.");
+       return false;
+   }
+ 
+   x=document.form1.contctno;
+   if(x.value=="")
+   {
+      alert("Please enter the Contact number.");
+      x.value="";
+      x.focus();
+      return false;
+   }
+   else if(isNaN(x.value))
+   {
+       alert("Contact number should contain only digits.");
+       x.value="";
+       x.focus();
+       return false;
+   }
+   else if(x.value.length!=10)
+   {
+      alert("Contact number should contain only 10 digits.(Mobile number)");
+      x.value="";
+      x.focus();
+      return false;
+   }
+   else if(!phonepattern.test(x.value))
+   {
+      alert("Invalid Contact number.");
+      x.value="";
+      x.focus();
+      return false;
+   }
+
+   x=document.form1.email;
+   if(!emailpattern.test(x.value))
+   {
+      alert("Invalid email id.");
+      x.value="";
+      x.focus();
+      return false;
+   }
+
+   if(confirm("Do you want to submit the form?"))
+   {
+       alert("Registration Form Submitted Successfully.");
+   }
+   else
+      return false;
+
+   function confirmreset()
+   {
+       return confirm("Do you want to reset the form?");
+ }
+}
+
+ 
+
+
+
+//2.Reverse.html
+
+<html>
+<head>
+<script>
+
+function doReverse()
+{
+var str =document.getElementById('mystring').value;
+alert(""+reverseString(str));
+}
+function reverseString (str)
+{
+str=str.split(' ');
+str=str.reverse();
+str=str.join(' ');
+return str;
+}
+</script>
+</head>
+<body>
+<h4><a>Reverse a string</a></h4>
+<input type="text" id="mystring"><br><br>
+<button id="btn" onClick="doReverse()">Reverse</button>
+</body>
+</html> 
+
+
+
+//3.calculator.java
+
+import java.awt.*;
+import java.awt.event.*;
+public class calculator implements ActionListener
+{
+	int c,n;
+	String s1,s2,s3,s4,s5;
+	Frame f;
+	Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17;
+	Panel p;
+	TextField tf;
+	GridLayout g;
+	calculator()
+	{
+	f = new Frame("My calculator");
+	p = new Panel();
+	f.setLayout(new FlowLayout());
+	b1 = new Button("0");
+	b1.addActionListener(this);
+	b2 = new Button("1");
+	b2.addActionListener(this);
+	b3 = new Button("2");
+	b3.addActionListener(this);
+	b4 = new Button("3");
+	b4.addActionListener(this);
+	b5 = new Button("4");
+	b5.addActionListener(this);
+	b6 = new Button("5");
+	b6.addActionListener(this);
+	b7 = new Button("6");
+	b7.addActionListener(this);
+	b8 = new Button("7");
+	b8.addActionListener(this);
+	b9 = new Button("8");
+	b9.addActionListener(this);
+	b10 = new Button("9");
+	b10.addActionListener(this);
+	b11 = new Button("+");
+	b11.addActionListener(this);
+	b12 = new Button("-");
+	b12.addActionListener(this);
+	b13 = new Button("*");
+	b13.addActionListener(this);
+	b14 = new Button("/");
+	b14.addActionListener(this);
+	b15 = new Button("%");
+	b15.addActionListener(this);
+	b16 = new Button("=");
+	b16.addActionListener(this);
+	b17 = new Button("C");
+	b17.addActionListener(this);
+	tf = new TextField(20);
+	f.add(tf);
+	g = new GridLayout(4,4,10,20);
+	p.setLayout(g);
+	p.add(b1);p.add(b2);p.add(b3);p.add(b4);p.add(b5);p.add(b6);p.add(b7);p.add(b8);p.add(b9);
+	p.add(b10);p.add(b11);p.add(b12);p.add(b13);p.add(b14);p.add(b15);p.add(b16);p.add(b17);
+	f.add(p);
+	f.setSize(300,300);
+	f.setVisible(true);
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==b1)
+		{
+			s3 = tf.getText();
+			s4 = "0";
+			s5 = s3+s4;
+		        tf.setText(s5);
+		}
+		if(e.getSource()==b2)
+		{
+			s3 = tf.getText();
+			s4 = "1";
+			s5 = s3+s4;
+			tf.setText(s5);
+		}
+		if(e.getSource()==b3)
+		{
+			s3 = tf.getText();
+			s4 = "2";
+			s5 = s3+s4;
+			tf.setText(s5);
+		}if(e.getSource()==b4)
+		{
+			s3 = tf.getText();
+			s4 = "3";
+			s5 = s3+s4;
+			tf.setText(s5);
+		}
+		if(e.getSource()==b5)
+		{
+			s3 = tf.getText();
+			s4 = "4";
+			s5 = s3+s4;
+			tf.setText(s5);
+		}
+		if(e.getSource()==b6)
+		{
+			s3 = tf.getText();
+			s4 = "5";
+			s5 = s3+s4;
+			tf.setText(s5);
+		}
+		if(e.getSource()==b7)
+		{
+			s3 = tf.getText();
+			s4 = "6";
+			s5 = s3+s4;
+			tf.setText(s5);
+		}
+		if(e.getSource()==b8)
+		{
+			s3 = tf.getText();
+			s4 = "7";
+			s5 = s3+s4;
+			tf.setText(s5);
+		}
+		if(e.getSource()==b9)
+		{
+			s3 = tf.getText();
+			s4 = "8";
+			s5 = s3+s4;
+			tf.setText(s5);
+		}
+		if(e.getSource()==b10)
+		{
+			s3 = tf.getText();
+			s4 = "9";
+			s5 = s3+s4;
+			tf.setText(s5);
+		}
+		if(e.getSource()==b11)
+		{
+			s1 = tf.getText();
+			tf.setText("");
+			c=1;
+
+		}
+		if(e.getSource()==b12)
+		{
+			s1 = tf.getText();
+			tf.setText("");
+			c=2;
+
+		}
+		if(e.getSource()==b13)
+		{
+			s1 = tf.getText();
+			tf.setText("");
+			c=3;
+
+		}
+		if(e.getSource()==b14)
+		{
+			s1 = tf.getText();
+			tf.setText("");
+			c=4;
+
+		}
+		if(e.getSource()==b15)
+		{
+			s1 = tf.getText();
+			tf.setText("");
+			c=5;
+
+		}
+		if(e.getSource()==b16)
+		{
+			s2 = tf.getText();
+			if(c==1)
+			{
+				n = Integer.parseInt(s1)+Integer.parseInt(s2);
+				tf.setText(String.valueOf(n));
+			}
+			else
+			if(c==2)
+			{
+				n = Integer.parseInt(s1)-Integer.parseInt(s2);
+				tf.setText(String.valueOf(n));
+			}
+			else
+			if(c==3)
+			{
+				n = Integer.parseInt(s1)*Integer.parseInt(s2);
+				tf.setText(String.valueOf(n));
+			}
+			if(c==4)
+			{
+			    try
+			    {
+			        int p=Integer.parseInt(s2);
+			        if(p!=0)
+                                {
+                        n = Integer.parseInt(s1)/Integer.parseInt(s2);
+                    tf.setText(String.valueOf(n));
+                                }
+                     else
+                        tf.setText("infinite");
+
+                }
+                catch(Exception i){}
+			}
+			if(c==5)
+			{
+				n = Integer.parseInt(s1)%Integer.parseInt(s2);
+				tf.setText(String.valueOf(n));
+			}
+		}
+		if(e.getSource()==b17)
+		{
+			tf.setText("");
+		}
+	}
+
+	public static void main(String[] abc)
+	{
+		calculator v = new calculator();
+	}
+}
+ 
+
+
+
+//4.TCP CHAT
+//tcpserver.java
+
+import java.io.*;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.*;
+ class chatserver implements ActionListener
+{  static Frame f;
+       static TextField t1;
+     static TextArea t2;
+    static Button b;
+    static PrintWriter out;
+    static Socket socket;
+    static String str,str1;
+    static String string =new String();
+ chatserver()
+ {   f=new Frame("SERVER");
+     f.setSize(300,300);
+     f.setLayout(new FlowLayout());
+     t1 = new TextField(20);
+     t2 = new TextArea(10,20);
+     b = new Button("send");
+     b.addActionListener(this);
+     f.add(t1);
+     f.add(b);
+     f.add(t2);
+     f.addWindowListener(new WindowAdapter ()
+                     {public void windowClosing (WindowEvent we)
+                      {System.exit(0);}
+                     });
+     f.setVisible(true);
+}
+
+public void actionPerformed(ActionEvent e)
+{
+try
+{
+str1=t1.getText();
+out.println(str1);
+string=string + "server:"+ str1 + "\n";
+t2.setText(string);
+t1.setText(" ");
+}
+catch(Exception ex){}
+}
+public static void main(String[] args) throws IOException
+{
+ ServerSocket ss=new ServerSocket(4509);
+ socket=ss.accept();
+ BufferedReader br=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+ out=new PrintWriter(socket.getOutputStream(),true);
+ chatserver tp=new chatserver();
+ while(true)
+ {
+      str1=br.readLine();
+      string=string + "client:"+ str1 + "\n";
+      t2.setText(string);
+}
+}
+}
+
+
+
+//tcpclient.java
+
+import java.io.*;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.*;
+ class chatclient implements ActionListener
+{   static Frame f;
+   static TextField t1;
+   static TextArea t2;
+   static Button b;
+   static PrintWriter out;
+   static Socket socket;
+   static String str,str1;
+   static String string =new String();
+ chatclient()
+ {   f=new Frame("CLIENT");
+     f.setSize(300,300);
+     f.setLayout(new FlowLayout());
+     t1 = new TextField(20);
+     t2 = new TextArea(10,20);
+     b = new Button("send");
+     b.addActionListener(this);
+     f.add(t1);
+     f.add(b);
+     f.add(t2);
+     f.addWindowListener(new WindowAdapter ()
+                     {public void windowClosing (WindowEvent we)
+                      {System.exit(0);}
+                     });
+     f.setVisible(true);
+}
+
+public void actionPerformed(ActionEvent e)
+{
+try
+{
+str1=t1.getText();
+out.println(str1);
+string=string + "client:"+ str1 + "\n";
+t2.setText(string);
+t1.setText(" ");
+}
+catch(Exception ex){}
+}
+public static void main(String[] args) throws IOException
+{
+ socket =new Socket("127.0.0.1",4509);
+ out=new PrintWriter(socket.getOutputStream(),true);
+ BufferedReader br=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+ chatclient tq=new chatclient();
+ while(true)
+ {
+      str1=br.readLine();
+      string=string + "server:"+ str1 + "\n";
+      t2.setText(string);
+}
+}
+}
+
+
+ 
+
+//5.UDP CHAT
+//udpserver.java
+ 
+ import java.io.*;
+ import java.net.*;
+ import java.awt.*;
+ import java.awt.event.*;
+ class udpserver implements ActionListener
+ {
+  static Frame f;
+  static TextField t1;
+  static TextArea t2;
+  static Button b;
+  static PrintWriter out;
+  static Socket socket;
+  static String str;
+  static ServerSocket ss;
+  static DatagramSocket ds;
+  static int buff_size=1024;
+  static byte buff[]=new byte[buff_size];
+  static DatagramPacket d1;
+  static DatagramPacket d2;
+  static InetAddress receiverAddr;
+  static int receivePort;
+  static String string=new String();
+
+  udpserver()
+   {
+    
+    f=new Frame("SERVER CHAT");
+    f.setSize(400,200);
+    f.setLayout(new FlowLayout());
+    t1= new TextField(20);
+    t2=new TextArea(10,20);
+     b=new Button("send");
+     b.addActionListener(this);
+     Panel p1=new Panel();
+     p1.add(t1);
+     p1.add(b);
+     f.add(new Label("type messages here"));
+     f.add(p1);
+     f.add(t2);
+     f.addWindowListener(new WindowAdapter()
+ {
+    public void  WindowClosing(WindowEvent we)
+     {
+        System.exit(0);
+       }
+});
+
+ f.setVisible(true);
+ }
+
+public void actionPerformed(ActionEvent e)
+{
+  try{
+         str=t1.getText();
+         buff=str.getBytes();
+         d1=new DatagramPacket(buff,buff.length,receiverAddr,receivePort);
+          ds.send(d1);
+        string=string+"Server:"+str+"\n";
+         t2.setText(string);
+           t1.setText(" ");
+          }catch(Exception ek){}
+}
+
+ public static void main(String args[])throws IOException 
+    {
+    ds=new DatagramSocket(5670);
+    udpserver tp=new udpserver();
+         String str1;
+         while(true)
+          {
+             buff=new byte [buff_size];
+             d2=new DatagramPacket(buff,buff.length);
+              ds.receive(d2);
+              str1=new String(d2.getData(),0,d2.getLength());
+              receiverAddr=d2.getAddress();
+              receivePort=d2.getPort();
+               string=string+"CLIENT:"+str1+"\n";
+                 t2.setText(string);
+          }
+}
+}
+
+
+
+//udpclient.java
+
+ import java.io.*;
+ import java.net.*;
+ import java.awt.*;
+ import java.awt.event.*;
+ import java.awt.event.WindowEvent.*;
+
+ class udpclient implements ActionListener
+ {
+  static Frame f;
+  static TextField t1;
+  static TextArea t2;
+  static Button b;
+  static PrintWriter out;
+  static Socket socket;
+  static String str;
+  static ServerSocket ss;
+  static DatagramSocket ds;
+  static int buff_size=1024;
+  static byte buff[]=new byte[buff_size];
+  static DatagramPacket d1;
+  static DatagramPacket d2;
+  static InetAddress receiverAddr;
+  static int receivePort;
+  static String string=new String();
+
+  udpclient()
+   {
+    
+    f=new Frame("CLIENT CHAT");
+    f.setSize(400,200);
+    f.setLayout(new FlowLayout());
+    t1= new TextField(20);
+    t2=new TextArea(10,20);
+     b=new Button("send");
+     b.addActionListener(this);
+     Panel p1=new Panel();
+     p1.add(t1);
+     p1.add(b);
+     f.add(new Label("type messages here"));
+     f.add(p1);
+     f.add(t2);
+     f.addWindowListener(new WindowAdapter()
+ {
+    public void  WindowClosing(WindowEvent we)
+     { 
+
+        System.exit(0);
+       }
+});
+
+ f.setVisible(true);
+ }
+
+public void actionPerformed(ActionEvent e)
+{
+  try{
+         str=t1.getText();
+         buff=str.getBytes();
+         d1=new DatagramPacket(buff,buff.length,receiverAddr,5670);
+          ds.send(d1);
+        string=string+"CLIENT:"+str+"\n";
+         t2.setText(string);
+           t1.setText(" ");
+          }catch(Exception ek){}
+}
+
+ public static void main(String args[])throws IOException 
+    {
+      BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+        receiverAddr=InetAddress.getByName("127.0.0.1");
+         ds=new DatagramSocket();
+         udpclient tp=new udpclient();
+         String str1;
+         while(true)
+          {
+             buff=new byte [buff_size];
+             d2=new DatagramPacket(buff,buff.length);
+              ds.receive(d2);
+              str1=new String(d2.getData(),0,d2.getLength());
+              receiverAddr=d2.getAddress();
+              receivePort=d2.getPort();
+               string=string+"SERVER:"+str1+"\n";
+                 t2.setText(string);
+          }
+}
+}
+
+
+
+//PHP
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <style type="text/css">
+     h1{
+      padding-top: 2%;
+      margin-left: 29%;
+      color: crimson;
+     }
+    form{
+      text-align: left;
+      color: crimson;
+      padding-left: 33%;
+      padding-top: 2%;
+    }
+    .button {
+      margin-top: 2%;
+}
+body{
+  background-color:   papayawhip;
+}
+  </style>
+	<title>Feedback Page</title>
+</head>
+<body>
+  <form name="myform" method="POST" >
+   EMAIL <input type="text" name="email1" pattern="(.*)(@)(.*)(com){1,1}"><br /><br />
+   FEEDBACK<textarea name="feed1"></textarea><br /><br />
+   <input class="button" type="submit" name="btn1" value="SUBMIT">
+   <input class="button" type="submit" name="btn2" value="SHOW ALL DETAILS">
+   <input class="button" type="submit" name="btn3" value="SIGN OUT">
+  </form>
+  <?php
+     error_reporting(0);
+     $host = "Localhost"; 
+     $user = "csa713";
+     $pass = 'mydb';
+     $db = 'csa713';
+     $conn = mysqli_connect($host,$user,$pass,$db);
+   if ($conn) 
+   {
+    if(isset($_POST['btn1']))
+    { 
+      $email2 = $_POST['email1'];
+      $feed2 = $_POST['feed1'];
+      $sql = "insert into feedback(EMAIL,FEEDBACK) values ('$email2','$feed2')"; 
+      $query = mysqli_query($conn,$sql);
+      if($query)
+      {
+       echo "Data inserted successfully";
+      }
+    }
+    if(isset($_POST['btn2']))
+    { 
+    $sql = "SELECT * FROM feedback";
+    $result = mysqli_query($conn,$sql);
+    if (mysqli_num_rows($result) > 0) 
+    {
+         echo "FEEDBACK DETAILS "."<br>"."<br>";
+    while($row = mysqli_fetch_array($result))
+     {
+       echo "EMAIL : ".$row["EMAIL"];
+       echo "<br>"."<br>";
+       echo "FEEDBACK : ".$row["FEEDBACK"];
+       echo "<br>"."<br>";
+       echo "<br>"."<br>";
+     }
+   }
+   else 
+    {
+         echo "<h2>"."SORRY NO FEEDBACK!!";
+    }
+     mysqli_free_result($result);
+   }
+   if(isset($_POST['btn3']))
+    { 
+        header('Location: register2.php');
+    }
+  }
+  mysqli_close($conn);
+?>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+   <style type="text/css">
+     h1{
+      padding-top: 2%;
+      margin-left: 38%;
+      color:  white;
+     }
+     body{
+      background-color: teal;
+      color: white;
+    }
+    h3{  
+     margin-left: 38%;
+      }
+    form{
+      text-align: left;
+      color:  white;
+      padding-left: 33%;
+      padding-top: 2%;
+    }
+    .button {
+      margin-top: 2%;
+       margin-left: 10%;
+      }
+      
+</style>
+	<title>Login Page</title>
+</head>
+<body>
+  <h1>LOGIN</h1>
+  <form name="myform2" method="POST" >
+  	EMAIL<input type="text" name="email3" required=""><br /><br />
+  	PASSWORD<input type="PASSWORD" name="pass3" required=""><br /><br />
+    <input class="button" type="submit" name="btn3" value="LOGIN">
+    </form>
+    <?php
+     error_reporting(0);
+$host = "Localhost";
+$user = "csb757";
+$pass = 'mydb';
+$db = 'csb757';
+$conn = mysqli_connect($host, $user, $pass,$db);
+//check connection
+if ($conn) 
+{   
+   // echo "Connected successfully";
+    if(isset($_POST['btn3']))
+    { 
+    $email2 = $_POST['email3'];
+    $pass2 = $_POST['pass3'];
+    $sql = "SELECT * FROM Regtable";
+    $result = mysqli_query($conn,$sql); 
+    if (mysqli_num_rows($result) > 0) 
+    {
+    while($row = mysqli_fetch_array($result))
+     {
+        $f=0;
+       if(($row["EMAIL"]==$email2)&&($row["PASSWORD"]==$pass2))
+       	  {
+            $f=1;
+            break;
+          }
+      } 
+       }
+       mysqli_free_result($result);
+      if($f==1)
+      {
+        echo "<br>"."Login successful"; 
+        header('Location: myprof.php');
+      }
+      else
+      {
+      	echo "Invalid";
+      }
+  }
+}
+mysqli_close($conn);
+?>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+   <style type="text/css">
+     h1{
+      padding-top: 2%;
+      margin-left: 38%;
+      color:  white;
+     }
+     body{
+      background-color: teal;
+      color: white;
+    }
+    h3{  
+     margin-left: 38%;
+      }
+    form{
+      text-align: left;
+      color:  white;
+      padding-left: 33%;
+      padding-top: 2%;
+    }
+    .button {
+      margin-top: 2%;
+       margin-left: 10%;
+      }
+      
+</style>
+	<title>Login Page</title>
+</head>
+<body>
+  <h1>LOGIN</h1>
+  <form name="myform2" method="POST" >
+  	EMAIL<input type="text" name="email3" required=""><br /><br />
+  	PASSWORD<input type="PASSWORD" name="pass3" required=""><br /><br />
+    <input class="button" type="submit" name="btn3" value="LOGIN">
+    </form>
+    <?php
+     error_reporting(0);
+$host = "Localhost";
+$user = "csb757";
+$pass = 'mydb';
+$db = 'csb757';
+$conn = mysqli_connect($host, $user, $pass,$db);
+//check connection
+if ($conn) 
+{   
+   // echo "Connected successfully";
+    if(isset($_POST['btn3']))
+    { 
+    $email2 = $_POST['email3'];
+    $pass2 = $_POST['pass3'];
+    $sql = "SELECT * FROM Regtable";
+    $result = mysqli_query($conn,$sql); 
+    if (mysqli_num_rows($result) > 0) 
+    {
+    while($row = mysqli_fetch_array($result))
+     {
+        $f=0;
+       if(($row["EMAIL"]==$email2)&&($row["PASSWORD"]==$pass2))
+       	  {
+            $f=1;
+            break;
+          }
+      } 
+       }
+       mysqli_free_result($result);
+      if($f==1)
+      {
+        echo "<br>"."Login successful"; 
+        header('Location: feedback.php');
+      }
+      else
+      {
+      	echo "Invalid";
+      }
+  }
+}
+mysqli_close($conn);
+?>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+     <style type="text/css">
+     h1{
+      color: #044f67;
+      padding-top: 4%;
+     }
+    body{
+      text-align: left;
+      color: #763568;
+      padding-left: 35%;
+    }
+    h2,h4{
+   color:#044f67;
+    }
+    h3{
+         text-align: left;
+        color:  #763568;
+      padding-left: 10%;
+    }
+</style>
+	<title>Profile Page</title>
+</head>
+<body bgcolor="#dcdcda">
+  <h1></h1>
+  <?php
+ error_reporting(0);
+$host = "Localhost";
+$user = "csb757";
+$pass = 'mydb';
+$db = 'csb757';
+$conn = mysqli_connect($host, $user, $pass,$db);
+if ($conn) 
+{  
+    //echo "Connected successfully";
+    $email2 = $_POST['email3'];
+    $pass2 = $_POST['pass3'];
+    $sql = "SELECT * FROM Regtable WHERE EMAIL='$email2' AND PASSWORD='$pass2'";
+    $result = mysqli_query($conn,$sql);
+    
+    if (mysqli_num_rows($result) > 0) 
+    {
+         echo "<h2>"."WELCOME ";
+    while($row = mysqli_fetch_array($result))
+     {
+         echo $row["NAME"]."</h2>";
+     	 echo "<br>"."<br>";
+     	 echo "<h4>"."NAME : ".$row["NAME"];
+     	 echo "<br>"."<br>";
+     	 echo "USERNAME : ".$row["USERNAME"];
+     	 echo "<br>"."<br>";
+     	 echo "EMAIL : ".$row["EMAIL"];
+     	 echo "<br>"."<br>";
+     	 echo "PASSWORD : ".$row["PASSWORD"];
+     	 echo "<br>"."<br>";
+     	 echo "MOBILE NO : ".$row["MOBNO"];
+     	 echo "<br>"."<br>";
+     	 echo "ADDRESS : ".$row["ADDRESS"];
+     	 echo "<br>"."<br>";
+     	 echo "GENDER : ".$row["GENDER"];
+     	 echo "<br>"."<br>";
+     	 echo "<br>"."<br>";
+     }
+   }
+   else 
+    {
+         echo "<h2>"."SORRY WRONG CREDENTIALS!!";
+    }
+     mysqli_free_result($result);
+ }
+     mysqli_close($conn);
+ ?>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <style type="text/css">
+     h1{
+      padding-top: 2%;
+      margin-left: 29%;
+      color: crimson;
+     }
+    form{
+      text-align: left;
+      color: crimson;
+      padding-left: 33%;
+      padding-top: 2%;
+    }
+    .button {
+      margin-top: 2%;
+       margin-left: 13%;
+}
+body{
+  background-color:   papayawhip;
+}
+  </style>
+	<title>Register Page</title>
+</head>
+<body>
+  <h1>REGISTRATION FORM</h1>
+  <form name="myform" method="POST" >
+  	NAME <input type="text" name="name1" required=""><br /><br />
+  	USER NAME <input type="text" name="user1" required=""><br /><br />
+  	EMAIL <input type="text" name="email1" required=""><br /><br />
+  	PASSWORD <input type="PASSWORD" name="pass1" required=""><br /><br />
+  	CONFIRM PASSWORD <input type="PASSWORD" name="pass1" required=""><br /><br />
+  	MOBILE NO <input type="number" name="mobno1" required=""><br /><br />
+    ADDRESS <textarea name="addr1" required=""></textarea><br /><br />
+    GENDER
+    <input type="radio" name="gender1" value="male">MALE</input>
+    <input type="radio" name="gender1" value="female">FEMALE</input>
+    <input type="radio" name="gender1" value="other">OTHER</input><br /><br />
+    <input class="button" type="submit" name="btn" value="SUBMIT">
+    </form>
+<?php
+ error_reporting(0);
+$host = "Localhost";
+$user = "csb757";
+$pass = 'mydb';
+$db = 'csb757';
+$conn = mysqli_connect($host, $user, $pass,$db);
+
+// Check connection
+if ($conn) 
+{   
+  //  echo "Connected successfully";
+    if(isset($_POST['btn']))
+    { 
+    $name2 = $_POST['name1'];
+    $user2 = $_POST['user1'];
+    $email2 = $_POST['email1'];
+    $pass2 = $_POST['pass1'];
+    $mobno2 = $_POST['mobno1'];
+    $addr2 = $_POST['addr1'];
+    if($_POST['gender1']=='male')
+    {
+      $gender2="Male";
+    }
+    elseif ($_POST['gender1']=='female') {
+      $gender2="Female";
+    }
+    else
+    {
+      $gender2="Other";
+    }
+    $sql = "insert into Regtable (NAME,USERNAME,EMAIL,PASSWORD,MOBNO,ADDRESS,GENDER) values ('$name2','$user2','$email2','$pass2','$mobno2','$addr2','$gender2')"; 
+    $query = mysqli_query($conn,$sql);
+    if($query)
+    {
+      echo "Data inserted successfully";
+      header('Location: log.php');
+    }
+  }
+}
+mysqli_close($conn);
+?>
+
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <script>
+    function myfunction()
+    {
+      var x=document.getElementById("form").action();
+    }
+  </script>
+  <style type="text/css">
+     h1{
+      padding-top: 2%;
+      margin-left: 29%;
+      color: crimson;
+     }
+    form{
+      text-align: left;
+      color: crimson;
+      padding-left: 33%;
+      padding-top: 2%;
+    }
+    .button {
+      margin-top: 2%;
+       margin-left: 13%;
+}
+body{
+  background-color:   papayawhip;
+}
+  </style>
+	<title>Register Page</title>
+</head>
+<body>
+  <h1>REGISTRATION FORM</h1>
+  <form name="myform" method="POST" >
+  	NAME <input type="text" name="name1" required=""><br /><br />
+  	USER NAME <input type="text" name="user1" required=""><br /><br />
+  	EMAIL <input type="text" name="email1" pattern="(.*)(@)(.*)(com){1,1}" required=""><br /><br />
+  	PASSWORD <input type="PASSWORD" name="pass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,7}" required=""><br /><br />
+  	CONFIRM PASSWORD <input type="PASSWORD" name="pass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,7}" required=""><br /><br />
+  	MOBILE NO <input type="text" name="mobno1" pattern="[0-9]{10}" required=""><br /><br />
+    ADDRESS <textarea name="addr1" required=""></textarea><br /><br />
+    GENDER
+    <input type="radio" name="gender1" value="male">MALE</input>
+    <input type="radio" name="gender1" value="female">FEMALE</input>
+    <input type="radio" name="gender1" value="other">OTHER</input><br /><br />
+    <input class="button" type="submit" name="btn" value="SUBMIT">
+    </form>
+<?php
+ error_reporting(0);
+$host = "Localhost";
+$user = "csb757";
+$pass = 'mydb';
+$db = 'csb757';
+/* to create db
+$db = "CREATE DATABASE mydb";
+Create connection  */
+$conn = mysqli_connect($host, $user, $pass,$db);
+
+// Check connection
+if ($conn) 
+{   
+  //  echo "Connected successfully";
+    if(isset($_POST['btn']))
+    { 
+    /*
+     sql to create table
+     $ql = "CREATE TABLE RegTable(NAME VARCHAR(30),USERNAME VARCHAR(30),EMAIL VARCHAR(30),PASSWORD VARCHAR(30),MOBNO INT(10),ADDRESS VARCHAR(200),GENDER VARCHAR(8))";
+     if ($conn->query($ql) === TRUE)
+     { 
+       echo "Table created successfully";
+     } 
+     else 
+     {
+     echo "Error creating table: " . $conn->error;
+     } 
+    */
+    $name2 = $_POST['name1'];
+    $user2 = $_POST['user1'];
+    $email2 = $_POST['email1'];
+    $pass2 = $_POST['pass1'];
+    $mobno2 = $_POST['mobno1'];
+    $addr2 = $_POST['addr1'];
+    if($_POST['gender1']=='male')
+    {
+      $gender2="Male";
+    }
+    elseif ($_POST['gender1']=='female') {
+      $gender2="Female";
+    }
+    else
+    {
+      $gender2="Other";
+    }
+    $sql = "insert into Regtable (NAME,USERNAME,EMAIL,PASSWORD,MOBNO,ADDRESS,GENDER) values ('$name2','$user2','$email2','$pass2','$mobno2','$addr2','$gender2')"; 
+    $query = mysqli_query($conn,$sql);
+    if($query)
+    {
+      echo "Data inserted successfully";
+      header('Location: log2.php');
+    }
+  }
+}
+mysqli_close($conn);
+?>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+______________________________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
